@@ -11,7 +11,7 @@ export default {
         {
           id: "Sani",
           name: "Yassine",
-          email: "Bain@yahoo.gr",
+          email: "Baim@yahoo.gr",
         },
       ],
     };
