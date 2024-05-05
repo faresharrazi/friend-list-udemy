@@ -10,6 +10,15 @@
         :key="f.id"
       ></friend-contact>
     </ul>
+    <button @click="toggleAddNewContact">
+      {{ !addNewContact ? "+" : "cancel" }}
+    </button>
+    <div v-if="addNewContact">
+      <input type="text" placeholder="name" v-model="newFriend.name" />
+      <input type="text" placeholder="email" v-model="newFriend.email" />
+      <input type="text" placeholder="phone" v-model="newFriend.phone" />
+      <button type="submit" @click.prevent="addNewFriend">Add</button>
+    </div>
   </section>
 </template>
 
@@ -17,6 +26,12 @@
 export default {
   data() {
     return {
+      addNewContact: false,
+      newFriend: {
+        name: "",
+        email: "",
+        phone: "",
+      },
       friends: [
         {
           id: "Hou",
@@ -38,6 +53,24 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    toggleAddNewContact() {
+      this.addNewContact = !this.addNewContact;
+    },
+
+    addNewFriend() {
+      this.friends.push({
+        id: this.newFriend.name,
+        name: this.newFriend.name,
+        email: this.newFriend.email,
+        phone: this.newFriend.phone,
+      });
+      this.newFriend.name = "";
+      this.newFriend.email = "";
+      this.newFriend.phone = "";
+      this.addNewContact = false;
+    },
   },
 };
 </script>
