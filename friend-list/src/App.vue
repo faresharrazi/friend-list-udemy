@@ -1,3 +1,14 @@
+<template>
+  <section>
+    <h1>Friend List</h1>
+    <ul>
+      <friend-contact></friend-contact>
+      <friend-contact></friend-contact>
+      <friend-contact></friend-contact>
+    </ul>
+  </section>
+</template>
+
 <script>
 export default {
   data() {
@@ -19,13 +30,17 @@ export default {
 };
 </script>
 
-<template>
-  <section>
-    <h1>Friend List</h1>
-    <ul>
-      <li v-for="f in friends" :key="f.id">
-        <p>Name: {{ f.name }} - Email: {{ f.email }}</p>
-      </li>
-    </ul>
-  </section>
-</template>
+<style scoped>
+h1 {
+  width: 500px;
+  text-align: center;
+  border: 2px solid black;
+  color: aliceblue;
+  background-color: brown;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
