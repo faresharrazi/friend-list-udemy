@@ -8,6 +8,11 @@ export default {
           name: "Houssam",
           email: "Samsam@yahoo.ca",
         },
+        {
+          id: "Sani",
+          name: "Yassine",
+          email: "Baim@yahoo.gr",
+        },
       ],
     };
   },
