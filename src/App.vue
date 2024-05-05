@@ -20,15 +20,21 @@ export default {
       friends: [
         {
           id: "Hou",
-          name: "Houssam",
+          name: "Houssam Bounasri",
           email: "Samsam@yahoo.ca",
           phone: "22 546 123",
         },
         {
           id: "Sani",
-          name: "Yassine",
+          name: "Yassine Sghir",
           email: "Baim@yahoo.gr",
           phone: "22 512 052",
+        },
+        {
+          id: "Lee",
+          name: "Ali Fathallah",
+          email: "Lee@yahoo.fr",
+          phone: "98 216 256",
         },
       ],
     };
