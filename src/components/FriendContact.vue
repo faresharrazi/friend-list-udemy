@@ -20,6 +20,9 @@ export default {
     name: {
       type: String,
       required: true,
+      validator: function (value) {
+        return value != "";
+      },
     },
     email: {
       type: String,
@@ -29,6 +32,10 @@ export default {
       type: String,
       required: false,
       default: "911",
+      validator: function (value) {
+        const numericRegex = /^[0-9]+$/;
+        return numericRegex.test(value);
+      },
     },
   },
   data() {
