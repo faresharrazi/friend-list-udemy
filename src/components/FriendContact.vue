@@ -1,8 +1,9 @@
 <template>
   <li>
     <p id="name">
-      {{ name }}
+      {{ name }} <span>{{ isFavorite ? "(Favorite)" : "" }}</span>
     </p>
+    <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleShowDetails">
       {{ !detailsAreVisible ? "Show" : "Hide" }} details
     </button>
@@ -17,6 +18,10 @@
 export default {
   // props: ["name", "email", "phone"],
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -37,6 +42,11 @@ export default {
         return numericRegex.test(value);
       },
     },
+    isFavorite: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
   data() {
     return {
@@ -46,6 +56,9 @@ export default {
   methods: {
     toggleShowDetails() {
       this.detailsAreVisible = !this.detailsAreVisible;
+    },
+    toggleFavorite() {
+      this.$emit("toggle-favorite", this.id);
     },
   },
 };
