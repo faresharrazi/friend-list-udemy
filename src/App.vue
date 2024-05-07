@@ -11,23 +11,13 @@
         :is-favorite="f.isFavorite"
         :key="f.id"
         @toggle-favorite="toggleFavoriteFriend"
+        @delete-friend="deleteFriend"
       ></friend-contact>
     </ul>
     <button @click="toggleAddNewContact">
       {{ !addNewContact ? "+" : "cancel" }}
     </button>
-    <div v-if="addNewContact">
-      <input type="text" placeholder="name" v-model="newFriend.name" />
-      <input type="text" placeholder="email" v-model="newFriend.email" />
-      <input type="text" placeholder="phone" v-model="newFriend.phone" />
-      <input
-        type="checkbox"
-        name="isFavoriteInput"
-        id="isFavoriteInput"
-        v-model="newFriend.isFavorite"
-      />
-      <button type="submit" @click.prevent="addNewFriend">Add</button>
-    </div>
+    <new-friend v-if="addNewContact" @new-friend="addNewFriend"></new-friend>
   </section>
 </template>
 
@@ -36,12 +26,6 @@ export default {
   data() {
     return {
       addNewContact: false,
-      newFriend: {
-        name: "",
-        email: "",
-        phone: "",
-        isFavorite: false,
-      },
       friends: [
         {
           id: "Hou",
@@ -72,25 +56,30 @@ export default {
       this.addNewContact = !this.addNewContact;
     },
 
-    addNewFriend() {
+    addNewFriend(friendObj) {
       this.friends.push({
-        id: this.newFriend.name,
-        name: this.newFriend.name,
-        email: this.newFriend.email,
-        phone: this.newFriend.phone,
-        isFavorite: this.newFriend.isFavorite,
+        id: friendObj.name,
+        name: friendObj.name,
+        email: friendObj.email,
+        phone: friendObj.phone,
+        isFavorite: friendObj.isFavorite,
       });
-      this.newFriend.name = "";
-      this.newFriend.email = "";
-      this.newFriend.phone = "";
-      this.newFriend.isFavorite = false;
       this.addNewContact = false;
     },
 
-    toggleFavoriteFriend(value) {
-      const friendToUpdate = this.friends.find((friend) => friend.id === value);
+    toggleFavoriteFriend(fiendId) {
+      const friendToUpdate = this.friends.find(
+        (friend) => friend.id === fiendId
+      );
       if (friendToUpdate) {
         friendToUpdate.isFavorite = !friendToUpdate.isFavorite;
+      }
+    },
+
+    deleteFriend(friendId) {
+      const index = this.friends.findIndex((friend) => friend.id === friendId);
+      if (index !== -1) {
+        this.friends.splice(index, 1);
       }
     },
   },

@@ -10,6 +10,7 @@
     <section v-if="detailsAreVisible">
       <p><span id="email">Email</span>: {{ email }}</p>
       <p><span id="phone">Phone</span>: {{ phone }}</p>
+      <button class="delete-friend" @click="deleteFriend">Delete</button>
     </section>
   </li>
 </template>
@@ -48,17 +49,17 @@ export default {
       default: false,
     },
   },
-  // emits: ["toggle-favorite"],
-  emits: {
-    "toggle-favorite": function (id) {
-      if (id) {
-        return true;
-      } else {
-        console.warn("ID IS MISSING");
-        return false;
-      }
-    },
-  },
+  emits: ["toggle-favorite", "delete-friend"],
+  // emits: {
+  //   "toggle-favorite": function (id) {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       console.warn("ID IS MISSING");
+  //       return false;
+  //     }
+  //   },
+  // },
   data() {
     return {
       detailsAreVisible: false,
@@ -70,6 +71,10 @@ export default {
     },
     toggleFavorite() {
       this.$emit("toggle-favorite", this.id);
+    },
+
+    deleteFriend() {
+      this.$emit("delete-friend", this.id);
     },
   },
 };
@@ -97,5 +102,18 @@ li {
 
 button {
   margin-bottom: 1rem;
+}
+
+.delete-friend {
+  padding: 8px 16px;
+  background-color: #dc3545; /* Red color */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-friend:hover {
+  background-color: #c82333; /* Darker red color on hover */
 }
 </style>
