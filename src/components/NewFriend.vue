@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  emits: ["new-friend"],
   data() {
     return {
       newFriend: {
@@ -57,7 +58,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 form {
   max-width: 300px;
   margin: 1rem auto;
